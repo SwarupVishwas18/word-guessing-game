@@ -1,0 +1,6 @@
+Bull
+Tiger
+Lion
+Cheetah
+Jaguar
+Wolf
