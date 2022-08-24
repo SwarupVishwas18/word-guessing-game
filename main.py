@@ -1,6 +1,6 @@
 from random import randint
 from colorama import Fore,Back
-
+from normal import *
 # All Variables!!!
 
 rules = """
@@ -21,6 +21,45 @@ given = []
 
 # METHODS..!!
 
+def addWord():
+    print(Fore.CYAN)
+    print(f"""
+    
+    1. Add {options[0]}
+    2. Add {options[1]}
+    3. Add Naruto Characters
+    4. Add {options[3]}
+    5. Add {options[4]}""")
+
+    try:
+        cat = int(input("Enter your choice : "))
+    except:
+        print(Fore.RED)
+        print("Sorry But It must Number Associated!!")
+        return None
+    filename = options[cat-1]
+    file = open(filename+".txt", 'a')
+
+    print(Fore.CYAN)
+    print("Enter Words : ")
+    print(Fore.MAGENTA)
+    print("NOTE : After Completing Your Word Insertion enter" , Fore.LIGHTGREEN_EX , "'wqz'", Fore.MAGENTA," as word.")
+    print(Fore.CYAN)
+    word = ""
+
+    while True:
+        print(Fore.CYAN)
+        word = input("Enter the word : ").title()
+        if word == 'wqz'.title():
+            print(Fore.LIGHTGREEN_EX)
+            print("Process Completed Succesfully..!!")
+            file.close()
+            break
+        file.write(word+"\n")
+        print(Fore.LIGHTGREEN_EX)
+        print("Word Added Successfully..!!")
+    
+
 def printUnders():
     for i in given:
         print(i,end=" ")
@@ -38,8 +77,9 @@ def printMenu():
         3. By Naruto Characters
         4. By {options[3]}
         5. By {options[4]}
-        6. Read Rules
-        7. Quit
+        6. Add Words
+        7. Read Rules
+        8. Quit
     """)
 
 def wordFinder(option):
@@ -50,19 +90,21 @@ def wordFinder(option):
 
 
 while True:
-    print(Fore.CYAN)
-    printLines()
-    print("      WORD GAME")
-    printLines()
+    printBrand("Guess Word")
     printMenu()
 
-    ch = int(input("Enter Your Choice : "))
-
-    if(ch==7):
+    try:
+        ch = int(input("Enter Your Choice : "))
+    except:
+        print(Fore.RED)
+        print("Input Must Be Numerical..!!")
+        continue
+    if(ch==8):
+        quitMe()
+    elif ch == 6:
+        addWord()
+    elif(ch==7):
         print(Fore.YELLOW)
-        print("Thanks For Using Our Software!!")
-        break
-    elif(ch==6):
         print(rules)
     elif(ch>4):
         print(Fore.RED)
