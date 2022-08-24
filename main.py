@@ -79,7 +79,8 @@ def printMenu():
         5. By {options[4]}
         6. Add Words
         7. Read Rules
-        8. Quit
+        8. About Me
+        9. Quit
     """)
 
 def wordFinder(option):
@@ -99,8 +100,10 @@ while True:
         print(Fore.RED)
         print("Input Must Be Numerical..!!")
         continue
-    if(ch==8):
+    if(ch==9):
         quitMe()
+    elif ch == 8:
+        aboutMe()
     elif ch == 6:
         addWord()
     elif(ch==7):
