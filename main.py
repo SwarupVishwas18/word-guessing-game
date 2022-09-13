@@ -89,70 +89,76 @@ def wordFinder(option):
     return data[randint(0, len(data)-1)].upper().strip()
 
 
+def main():
 
-while True:
-    printBrand("Guess Word")
-    printMenu()
+    while True:
+        printBrand("Guess Word")
+        printMenu()
 
-    try:
-        ch = int(input("Enter Your Choice : "))
-    except:
-        print(Fore.RED)
-        print("Input Must Be Numerical..!!")
-        continue
-    if(ch==9):
-        quitMe()
-    elif ch == 8:
-        aboutMe()
-    elif ch == 6:
-        addWord()
-    elif(ch==7):
-        print(Fore.YELLOW)
-        print(rules)
-    elif(ch>4):
-        print(Fore.RED)
-        print("Wrong Choice!")
-    else:
-        word = wordFinder(ch-1)
-        length = len(word)
+        try:
+            ch = int(input("Enter Your Choice : "))
+        except:
+            print(Fore.RED)
+            print("Input Must Be Numerical..!!")
+            continue
+        if(ch==9):
+            quitMe()
+        elif ch == 8:
+            aboutMe()
+        elif ch == 6:
+            addWord()
+        elif(ch==7):
+            print(Fore.YELLOW)
+            print(rules)
+        elif(ch>4):
+            print(Fore.RED)
+            print("Wrong Choice!")
+        else:
+            word = wordFinder(ch-1)
+            length = len(word)
 
-        for i in range(len(word)):
-            given.append("_")
-
-        printUnders()
-
-        while True:
-            printLines()
-            ind = int(input("Enter Position : "))
-            letter = input("Enter Letter : ").upper()
-
-            if(word[ind-1]==letter):
-                print(Fore.GREEN)
-                print("Correct")
-                given[ind-1] = letter
-                length-=1
-            else:
-                print(Fore.RED)
-                print("Wrong!! Correct Letter is : ",word[ind-1])
-                given[ind-1] = word[ind-1]
-                wrongAns+=1
-                length-=1
-            if(wrongAns==3):
-                print(Fore.RED)
-                print("You Lost !!")
-                print("Complete Word : ")
-                print(word.upper())
-                given.clear()
-                
-                break
-            elif(length==0):
-                print(Fore.GREEN)
-                print("You Won!!")
-                print("Complete Word : ")
-                printUnders()
-                given.clear()
-                
-                break
-                
+            for i in range(len(word)):
+                given.append("_")
 
             printUnders()
+
+            while True:
+                printLines()
+                ind = int(input("Enter Position : "))
+                letter = input("Enter Letter : ").upper()
+
+                if(word[ind-1]==letter):
+                    print(Fore.GREEN)
+                    print("Correct")
+                    given[ind-1] = letter
+                    length-=1
+                else:
+                    print(Fore.RED)
+                    print("Wrong!! Correct Letter is : ",word[ind-1])
+                    given[ind-1] = word[ind-1]
+                    wrongAns+=1
+                    length-=1
+                if(wrongAns==3):
+                    print(Fore.RED)
+                    print("You Lost !!")
+                    print("Complete Word : ")
+                    print(word.upper())
+                    given.clear()
+                    
+                    break
+                elif(length==0):
+                    print(Fore.GREEN)
+                    print("You Won!!")
+                    print("Complete Word : ")
+                    printUnders()
+                    given.clear()
+                    
+                    break
+                    
+
+                printUnders()
+
+try:
+    main()
+except:
+    quitMe()
